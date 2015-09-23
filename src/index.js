@@ -1,7 +1,6 @@
 import path from 'path';
 import SVGO from 'svgo';
 import Promise from 'bluebird';
-import invariant from 'invariant';
 import svg2js from 'svgo/lib/svgo/svg2js';
 import js2svg from './js2svg';
 
@@ -9,9 +8,10 @@ const svgo = new SVGO();
 const fs = Promise.promisifyAll(require('fs'));
 const glob = Promise.promisify(require('glob'));
 
+export * as templates from '../templates';
+
 export default async (input, output, template, component) => {
-  const camelCaps = (str) =>
-   str.split('-')
+  const camelCaps = (str) => str.split('-')
     .map((s) => s.substring(0, 1).toUpperCase() + s.substring(1, s.length))
     .join('');
 
@@ -24,10 +24,8 @@ export default async (input, output, template, component) => {
 
     const svg = await Promise.all(files.map(
       ({ name, content }) => new Promise((resolve, reject) => {
-        svgo.optimize(
-          content,
-          (result) => resolve({ name, content: result.data })
-        );
+        svgo.optimize(content,
+          (result) => resolve({ name, content: result.data }));
     })));
 
     const jsx = await Promise.all(

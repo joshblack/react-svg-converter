@@ -1,5 +1,5 @@
 /**
- * From: https://github.com/svg/svgo/blob/master/plugins/_collections.js
+ * Source: https://github.com/svg/svgo/blob/master/plugins/_collections.js
  */
 
 'use strict';

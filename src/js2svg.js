@@ -1,5 +1,5 @@
 /**
- * From: https://github.com/svg/svgo/blob/master/lib/svgo/js2svg.js
+ * Source: https://github.com/svg/svgo/blob/master/lib/svgo/js2svg.js
  */
 
 'use strict';
