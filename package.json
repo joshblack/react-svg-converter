@@ -1,0 +1,29 @@
+{
+  "name": "svg-to-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "svg-to-react": "./bin/cli.js"
+  },
+  "dependencies": {
+    "babel": "^5.8.23",
+    "bluebird": "^2.10.1",
+    "commander": "^2.8.1",
+    "core-js": "^0.9.18",
+    "glob": "^5.0.14",
+    "invariant": "^2.1.1",
+    "svgo": "^0.5.6",
+    "whet.extend": "^0.9.9"
+  },
+  "devDependencies": {
+    "expect": "^1.10.0",
+    "mocha": "^2.3.3"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test mocha",
+    "test:watch": "NODE_ENV=test mocha --watch"
+  },
+  "author": "Josh Black <joshblack@us.ibm.com>",
+  "license": "MIT"
+}
