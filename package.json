@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "svg-to-react": "./bin/cli.js"
+    "svg-to-react": "./bin/index.js"
   },
   "dependencies": {
     "babel": "^5.8.23",

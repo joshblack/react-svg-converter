@@ -309,7 +309,7 @@ JS2SVG.prototype.createAttrs = function(elem) {
 
     elem.eachAttr(function(attr) {
         if (attr.type === 'JSX') {
-            attrs += ` ${attr.name}=${attr.value}`;
+            attrs += ` {...${attr.name}}`;
         } else {
             attrs +=    ' ' +
                         attr.name +

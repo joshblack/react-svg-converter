@@ -5,30 +5,11 @@ import invariant from 'invariant';
 import svg2js from 'svgo/lib/svgo/svg2js';
 import js2svg from './js2svg';
 
-import reactTemplate from '../templates/react.es6.js';
-
 const svgo = new SVGO();
 const fs = Promise.promisifyAll(require('fs'));
 const glob = Promise.promisify(require('glob'));
 
-
-
-
-function transform({ name, content }) {
-  const camelCaps = (str) =>
-   str.split('-')
-    .map((s) => s.substring(0, 1).toUpperCase() + s.substring(1, s.length))
-    .join('');
-
-  const componentName = camelCaps(name.split('.')[0]);
-  console.log(componentName);
-
-  return 'hi';
-}
-
-// optimize flag
-
-export default async (input, output) => {
+export default async (input, output, template, component) => {
   const camelCaps = (str) =>
    str.split('-')
     .map((s) => s.substring(0, 1).toUpperCase() + s.substring(1, s.length))
@@ -49,18 +30,20 @@ export default async (input, output) => {
         );
     })));
 
-    const js = await Promise.all(
+    const jsx = await Promise.all(
       svg.map(({ name, content }) => new Promise((resolve, reject) => {
-        svg2js(content, (result) => resolve({ name, content: addStyleJSXAttribute(result) }));
+        svg2js(content, (result) => resolve({
+          name,
+          content: addStyleJSXAttribute(result, component)
+        }));
       })));
 
-    const jsxSVG = js.map(
+    const jsSVG = jsx.map(
       ({ name, content }) => ({ name, content: js2svg(content).data }));
 
-    const programs = jsxSVG.map(
-      ({ name, content }) => ({
-        name,
-        content: reactTemplate(name.split('.')[0], content)
+    const programs = jsSVG.map(({ name, content }) => ({
+      name,
+      content: template(name.split('.')[0], content)
     }));
 
     for (const { name, content } of programs) {
@@ -73,16 +56,19 @@ export default async (input, output) => {
   }
 }
 
-function addStyleJSXAttribute(svg) {
+function addStyleJSXAttribute(svg, component) {
   const styledSVG = { ...svg };
+  const propValue = component ? 'this.props' : 'props';
 
-  styledSVG.content[0].attrs = { ...svg.content[0].attrs, style: {
-      name: 'style',
-      value: `{this.props.style}`,
+  styledSVG.content[0].attrs = { ...svg.content[0].attrs,
+    style: {
+      name: propValue,
+      value: '',
       prefix: '',
       local: '',
       type: 'JSX'
-  }};
+    }
+  };
 
   delete styledSVG.content[0].content[1].attrs.fill
 

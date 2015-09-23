@@ -4,7 +4,7 @@ export default (name, svg) =>
 export default class ${name}Icon extends Component {
   render() {
     return (
-      ${svg}
+      ${svg};
     );
   }
 }`
