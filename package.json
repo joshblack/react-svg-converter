@@ -1,8 +1,8 @@
 {
   "name": "react-svg-converter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLI and module for converting SVG's to usable React Components.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "bin": {
     "react-svg-converter": "./bin/index.js"
   },
@@ -28,7 +28,8 @@
   },
   "scripts": {
     "build": "babel src -d lib",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha",
+    "prepublish": "npm run build"
   },
   "author": "Josh Black <joshblack@us.ibm.com>",
   "license": "MIT"
