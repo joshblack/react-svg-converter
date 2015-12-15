@@ -4,7 +4,7 @@ import spy from 'spy';
 import path from 'path';
 import expect from 'expect';
 import svgConvert from '../src';
-import * as templates from '../templates';
+import * as templates from '../src/templates';
 
 // Stub out fs manually, will break test:watch
 let fs = require('fs');

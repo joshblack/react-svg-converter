@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import path from 'path';
 import SVGO from 'svgo';
 import Promise from 'bluebird';
@@ -7,8 +9,6 @@ import js2svg from './js2svg';
 const svgo = new SVGO();
 const fs = Promise.promisifyAll(require('fs'));
 const glob = Promise.promisify(require('glob'));
-
-export * as templates from '../templates';
 
 export default async (input, output, template, component) => {
   const camelCaps = (str) => str.split('-')

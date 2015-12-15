@@ -9,6 +9,7 @@
   "dependencies": {
     "babel": "^6.3.13",
     "babel-cli": "^6.3.17",
+    "babel-plugin-transform-regenerator": "^6.3.18",
     "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-1": "^6.3.13",
@@ -26,6 +27,7 @@
     "spy": "^0.1.3"
   },
   "scripts": {
+    "build": "babel src -d lib",
     "test": "NODE_ENV=test mocha"
   },
   "author": "Josh Black <joshblack@us.ibm.com>",
