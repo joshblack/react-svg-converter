@@ -1,7 +1,7 @@
 export default (name, svg) =>
-`import { Component } from 'react';
+`import React from 'react';
 
-export default class ${name}Icon extends Component {
+export default class ${name}Icon extends React.Component {
   render() {
     return (
       ${svg};
