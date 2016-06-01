@@ -42,6 +42,10 @@ var entities = {
       '<': '&lt;',
     };
 
+var reactAttrNames = {
+    'class': 'className',
+};
+
 /**
  * Convert SVG-as-JS object to SVG (XML) string.
  *
@@ -311,8 +315,9 @@ JS2SVG.prototype.createAttrs = function(elem) {
         if (attr.type === 'JSX') {
             attrs += ` {...${attr.name}}`;
         } else {
+            var attrName = reactAttrNames[attr.name] || attr.name
             attrs +=    ' ' +
-                        attr.name +
+                        attrName +
                         this.config.attrStart +
                         String(attr.value).replace(this.config.regValEntities, this.config.encodeEntity) +
                         this.config.attrEnd;
