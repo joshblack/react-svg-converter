@@ -1,6 +1,6 @@
 {
   "name": "react-svg-converter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI and module for converting SVG's to usable React Components.",
   "repository": {
     "type": "git",
